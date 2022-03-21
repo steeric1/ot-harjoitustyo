@@ -1,5 +1,5 @@
 commit 43af41ddd973624fe7219061d009535ebff1c048
-Author: Nikko Kujanpää <nikko.kujanpaa@gmail.com>
+Author: Nikko Kujanpaa <nikko.kujanpaa@gmail.com>
 Date:   Mon Mar 21 16:44:58 2022 +0200
 
     poistettu file1, muutettu file2 -> file22
