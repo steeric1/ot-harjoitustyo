@@ -1,4 +1,4 @@
-# OT-harjoitustyö (2022 kevät)
+# Ohjelmistotekniikka-harjoitustyö (2022 kevät)
 
 ## Tehtävät
 
