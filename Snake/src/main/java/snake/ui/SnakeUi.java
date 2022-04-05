@@ -1,20 +1,29 @@
 package snake.ui;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import snake.dao.CsvUserDao;
+import snake.domain.SnakeService;
 
 public class SnakeUi extends Application {
     
+    static final int DIMENSION = 700;
+    
+    private SnakeService service;
+    
+    // Application views
+    private View login;
+    
+    @Override
+    public void init() {
+        this.service = new SnakeService(new CsvUserDao());
+    }
+    
     @Override
     public void start(Stage stage) {
-        String javaVersion = System.getProperty("java.version");
-        String javafxVersion = System.getProperty("javafx.version");
-        Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        Scene scene = new Scene(new StackPane(l), 640, 480);
-        stage.setScene(scene);
+        this.login = new LoginView(this.service);
+        
+        stage.setScene(login.getScene());
         stage.show();
     }
     
