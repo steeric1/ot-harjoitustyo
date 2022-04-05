@@ -1,17 +1,10 @@
-# Ohjelmistotekniikka-harjoitustyö (2022 kevät)
+# Snake
 
-## Tehtävät
+2-ulotteinen Snake-peli.
 
-### Viikko 1
-
-[komentorivi.txt](laskarit/viikko1/komentorivi.txt)  
-[gitlog.txt](laskarit/viikko1/gitlog.txt)  
-
-### Viikko 2
+## Dokumentaatio
 
 [Vaatimusmäärittely](harjoitustyo/documentation/requirements-specification.md)  
-[Tuntikirjanpito](harjoitustyo/hours-record.md)
+[Työaikakirjanpito](harjoitustyo/hours-record.md)  
+[Muutosloki](harjoitustyo/documentation/changelog.md)  
 
-### Viikko 3
-
-[Changelog](harjoitustyo/documentation/changelog.md)
