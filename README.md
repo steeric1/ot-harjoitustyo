@@ -4,7 +4,7 @@
 
 ## Dokumentaatio
 
-[Vaatimusmäärittely](harjoitustyo/documentation/requirements-specification.md)  
-[Työaikakirjanpito](harjoitustyo/hours-record.md)  
-[Muutosloki](harjoitustyo/documentation/changelog.md)  
+[Vaatimusmäärittely](documentation/requirements-specification.md)  
+[Työaikakirjanpito](documentation/hours-record.md)  
+[Muutosloki](documentation/changelog.md)  
 
