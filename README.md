@@ -9,5 +9,9 @@
 
 ### Viikko 2
 
-[Vaatimusmäärittely](harjoitustyo/requirements-specification.md)  
+[Vaatimusmäärittely](harjoitustyo/documentation/requirements-specification.md)  
 [Tuntikirjanpito](harjoitustyo/hours-record.md)
+
+### Viikko 3
+
+[Changelog](harjoitustyo/documentation/changelog.md)
