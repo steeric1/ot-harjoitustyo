@@ -4,6 +4,6 @@ import java.util.List;
 import snake.domain.User;
 
 public interface UserDao {
-    void add(User user) throws Exception;
-    List<User> getAll();
+    public void add(User user) throws Exception;
+    public List<User> getAll();
 }

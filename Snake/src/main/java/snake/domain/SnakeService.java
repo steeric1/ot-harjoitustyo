@@ -21,7 +21,6 @@ public class SnakeService {
             return UserCreationResult.INTERNAL_ERROR;
         }
         
-        System.out.println("Here");
         return UserCreationResult.SUCCESS;
     }
     
