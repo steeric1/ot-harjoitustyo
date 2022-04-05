@@ -36,5 +36,10 @@ public class SnakeServiceTest {
         
         assertEquals(UserCreationResult.NAME_TAKEN, service.createUser("test"));
     }
+    
+    @Test
+    public void userCreationReturnsInternalErrorUponException() {
+        assertEquals(UserCreationResult.INTERNAL_ERROR, service.createUser("error"));
+    }
 
 }
