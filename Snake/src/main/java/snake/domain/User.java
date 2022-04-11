@@ -1,17 +1,33 @@
 package snake.domain;
 
 public class User {
+    /**
+     * The name of this user.
+     */
     private String username;
-    
-    public User(String username) {
-        this.username = username;
+
+    /**
+     * Create a new user object.
+     *
+     * @param name The name of this user.
+     */
+    public User(final String name) {
+        this.username = name;
     }
-    
+
+    /**
+     * @return The name of the user.
+     */
     public String getUsername() {
         return this.username;
     }
-    
-    public void setUsername(String username) {
-        this.username = username;
+
+    /**
+     * Set the name of the user.
+     *
+     * @param name The new username.
+     */
+    public void setUsername(final String name) {
+        this.username = name;
     }
 }
