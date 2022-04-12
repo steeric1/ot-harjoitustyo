@@ -2,30 +2,15 @@ package snake.domain;
 
 import snake.dao.UserDao;
 
-public final class SnakeService {
+public class SnakeService {
 
-    /**
-     * The DAO this instance uses to manage users.
-     */
     private UserDao userDao;
 
-    /**
-     * A service object that manages the main logic behind the application.
-     *
-     * @param dao   The user data access object that manages users for this
-     *                  service object.
-     */
-    public SnakeService(final UserDao dao) {
+    public SnakeService(UserDao dao) {
         this.userDao = dao;
     }
 
-    /**
-     * Create a user.
-     *
-     * @param username The name for the new user.
-     * @return An object that tells what the result of the creation was.
-     */
-    public UserCreationResult createUser(final String username) {
+    public UserCreationResult createUser(String username) {
         User user = new User(username);
         UserCreationResult isValid = this.validateUser(user);
         if (isValid != null) {
@@ -41,13 +26,7 @@ public final class SnakeService {
         return UserCreationResult.SUCCESS;
     }
 
-    /**
-     * Validate a user.
-     *
-     * @param user The user to validate.
-     * @return A `UserCreationResult` that tells whether the user is valid.
-     */
-    private UserCreationResult validateUser(final User user) {
+    private UserCreationResult validateUser(User user) {
         if (user.getUsername().length() < 2) {
             return UserCreationResult.NAME_TOO_SHORT;
         } else if (userDao.getAll().stream()
