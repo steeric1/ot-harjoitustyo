@@ -33,7 +33,7 @@ public class SnakeUi extends Application {
             }
         };
         
-        this.service = new SnakeService(new CsvUserDao("src/main/resources/users.csv"));
+        this.service = new SnakeService(new CsvUserDao("users.csv"));
         this.login = new LoginView(this.service, changer);
         this.menu = new MenuView(this.service, changer);
     }

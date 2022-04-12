@@ -14,7 +14,7 @@ public class CsvUserDaoTest {
     
     @Before
     public void setUp() {
-        dao = new CsvUserDao("src/test/resources/users.csv");
+        dao = new CsvUserDao("test-users.csv");
     }
     
     @Test
