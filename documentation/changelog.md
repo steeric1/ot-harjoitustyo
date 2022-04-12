@@ -16,4 +16,20 @@
     * a single user can be created
     * cannot create a user with too short a name
     * cannot create a user with a name that's already taken
-    * the uesr creation result is correct when an exception is thrown
+    * the user creation result is correct when an exception is thrown
+
+### Week 4
+
+* The functionality of the UI for logging in users and creating new users has been finished, visual changes may be incoming
+* The logic behind creating new users and logging in users is functional
+* New classes:
+  * MenuView - extends View, creates the menu view (unifinished)
+  * ViewChanger - a helper interface, makes it possible for View instances to change the view without a circular dependency
+  * ViewType - a helper enum, used with ViewChanger to tell the SnakeUi class what view we want to change to
+* New tests:
+  * SnakeService
+    * can login to a user that has been created
+    * after logging in, the currently logged in user changes
+  * CsvUserDao:
+    * after adding a user, it appears on the list of all users returned by the class
+    * after adding a user, it can be found by name
