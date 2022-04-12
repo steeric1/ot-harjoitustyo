@@ -8,7 +8,7 @@ The application will implement a simple 2-dimensional game known as 'Snake', whe
 
 There will be five views in the application, each of which have their own functionality. The views are the login view, the menu view, the profile view, the high score view and the game view.
 
-### Login View
+### Login View - Completed
 
 * The user will be able to choose one of the users listed
     * No passwords, the application is meant to be used locally within safe environments
