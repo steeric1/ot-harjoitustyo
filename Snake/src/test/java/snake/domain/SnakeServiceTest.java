@@ -41,5 +41,20 @@ public class SnakeServiceTest {
     public void userCreationReturnsInternalErrorUponException() {
         assertEquals(UserCreationResult.INTERNAL_ERROR, service.createUser("error"));
     }
+    
+    @Test
+    public void canLogInToCreatedUser() {
+        service.createUser("user");
+        
+        assertTrue(service.login("user"));
+    }
+    
+    @Test
+    public void afterLoggingInLoggedInUserChanges() {
+        service.createUser("user");
+        service.login("user");
+        
+        assertEquals("user", service.getLoggedInUser().getUsername());
+    }
 
 }

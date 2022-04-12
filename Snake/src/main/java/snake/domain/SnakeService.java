@@ -1,11 +1,14 @@
 package snake.domain;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import snake.dao.UserDao;
 
 public class SnakeService {
 
     private UserDao userDao;
-
+    private User loggedInUser;
+    
     public SnakeService(UserDao dao) {
         this.userDao = dao;
     }
@@ -24,6 +27,28 @@ public class SnakeService {
         }
 
         return UserCreationResult.SUCCESS;
+    }
+    
+    public boolean login(String username) {
+        User u = this.userDao.getByName(username);
+        if (u == null) {
+            System.out.println("User by name \"" + username + "\" was not found.");
+            return false;
+        }
+        
+        System.out.println("Logged in as: " + username);
+        this.loggedInUser = u;
+        return true;
+    }
+    
+    public User getLoggedInUser() {
+        return this.loggedInUser;
+    }
+    
+    public List<String> getAllUsernames() {
+        return this.userDao.getAll().stream()
+                .map(u -> u.getUsername())
+                .collect(Collectors.toList());
     }
 
     private UserCreationResult validateUser(User user) {
@@ -45,3 +70,5 @@ public class SnakeService {
     }
 
 }
+
+

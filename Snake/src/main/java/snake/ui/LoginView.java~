@@ -37,14 +37,13 @@ public class LoginView extends View {
         List<String> usernames = super.service.getAllUsernames();
         if (!usernames.isEmpty()) {
             Label login = new Label("Login:");
-            login.setFont(new Font(22));
+            login.setFont(new Font("Arial", 22));
             loginPane.getChildren().add(login);
 
             for (String name : usernames) {
                 Button loginBtn = new Button(name);
                 loginBtn.setOnAction(event -> {
                     super.service.login(name);
-                    super.viewChanger.change(ViewType.MENU);
                 });
 
                 loginPane.getChildren().add(loginBtn);
@@ -53,7 +52,7 @@ public class LoginView extends View {
         
         // Elements relating to creation of new users
         Label newUser = new Label("First time?");
-        newUser.setFont(new Font(22));
+        newUser.setFont(new Font("Arial", 22));
         Button createNewUser = new Button("Create new user");
         createNewUser.setOnAction(event -> {
             Label newUsername = new Label("Enter username:");

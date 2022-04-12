@@ -24,4 +24,14 @@ public class FakeUserDao implements UserDao {
     public List<User> getAll() {
         return users;
     }    
+
+    @Override
+    public User getByName(String username) {
+        for (User u : this.users) {
+            if (u.getUsername().equals(username))
+                return u;
+        }
+        
+        return null;
+    }
 }
