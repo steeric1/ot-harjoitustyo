@@ -2,3 +2,5 @@
 /Snake/target/
 /Snake/nbactions.xml
 /Snake/nbproject/
+/Snake/src/main/resources/users.csv
+/Snake/src/test/resources/users.csv
