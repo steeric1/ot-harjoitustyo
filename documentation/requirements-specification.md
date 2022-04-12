@@ -10,9 +10,9 @@ There will be five views in the application, each of which have their own functi
 
 ### Login View - Completed
 
-* The user will be able to choose one of the users listed
+* The user will be able to choose one of the users listed - Completed
     * No passwords, the application is meant to be used locally within safe environments
-* The user can create a new user
+* The user can create a new user - Completed
     * The username will need to be unique and the length at least 2 characters
 
 ### Menu View
