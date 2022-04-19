@@ -1,5 +1,6 @@
 package snake.domain;
 
+import javafx.scene.paint.Color;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -55,6 +56,23 @@ public class SnakeServiceTest {
         service.login("user");
         
         assertEquals("user", service.getLoggedInUser().getUsername());
+    }
+    
+    @Test
+    public void canRenameUser() {
+        service.createUser("test");
+        service.renameUser("test", "newname");
+        
+        assertEquals("newname", service.getAllUsernames().get(0));
+    }
+    
+    @Test
+    public void canSetUserColor() {
+        service.createUser("test");
+        service.setUserColor("test", Color.RED);
+        service.login("test");
+        
+        assertEquals(Color.RED, service.getLoggedInUser().getColor());
     }
 
 }
