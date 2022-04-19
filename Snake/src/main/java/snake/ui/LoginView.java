@@ -12,23 +12,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import snake.domain.SnakeService;
-import snake.domain.UserCreationResult;
+import snake.domain.UserOperationResult;
 
 public class LoginView extends View {
-    private Scene scene;
-    
+
     public LoginView(SnakeService service, ViewChanger changer) {
-        super(service, changer);
-        
-        this.scene = this.createScene();
+        super(service, changer, false);
     }
     
     @Override
-    public Scene getScene() {
-        return this.scene;
-    }
-    
-    private Scene createScene() {
+    protected Scene buildScene() {
         VBox loginPane = new VBox(10);
         loginPane.setPadding(new Insets(10));
         loginPane.setAlignment(Pos.TOP_LEFT);
@@ -37,7 +30,7 @@ public class LoginView extends View {
         List<String> usernames = super.service.getAllUsernames();
         if (!usernames.isEmpty()) {
             Label login = new Label("Login:");
-            login.setFont(new Font(22));
+            login.setFont(new Font(20));
             loginPane.getChildren().add(login);
 
             for (String name : usernames) {
@@ -53,7 +46,7 @@ public class LoginView extends View {
         
         // Elements relating to creation of new users
         Label newUser = new Label("First time?");
-        newUser.setFont(new Font(22));
+        newUser.setFont(new Font(20));
         Button createNewUser = new Button("Create new user");
         createNewUser.setOnAction(event -> {
             Label newUsername = new Label("Enter username:");
@@ -71,10 +64,10 @@ public class LoginView extends View {
             Button finishUserCreation = new Button("Create user");
             finishUserCreation.setOnAction(ev -> {
                 String username = newUsernameInput.getText();
-                UserCreationResult result = super.service
+                UserOperationResult result = super.service
                         .createUser(username);
                 
-                if (result != UserCreationResult.SUCCESS) {
+                if (result != UserOperationResult.SUCCESS) {
                     userCreationError.setText(result.toString());
                     userCreationError.setVisible(true);
                 } else {
@@ -84,6 +77,7 @@ public class LoginView extends View {
                 
                 super.service.login(username);
                 super.viewChanger.change(ViewType.MENU);
+                newUsernameInput.setText("");
             });
             
             loginPane.getChildren().remove(createNewUser);

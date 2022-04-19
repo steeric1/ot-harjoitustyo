@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import javafx.scene.paint.Color;
 import snake.domain.User;
 
 public class CsvUserDao implements UserDao {
@@ -25,7 +27,9 @@ public class CsvUserDao implements UserDao {
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    this.users.add(new User(line));
+                    String[] parts = line.split(";");
+                    this.users.add(new User(UUID.fromString(parts[0]), parts[1], 
+                            Color.web(parts[2])));
                 }
             }
         } catch (IOException e) {
@@ -39,11 +43,17 @@ public class CsvUserDao implements UserDao {
         users.add(user);
         
         // No caching, save directly
-        try (FileWriter writer = new FileWriter(new File(this.filePath))) {
-            for (User u : this.users) {
-                writer.write(u.getUsername() + '\n');
-            }
-        }
+        this.save();
+    }
+    
+    @Override
+    public boolean remove(User user) throws Exception {
+        boolean contained = this.users.remove(user);
+        if (!contained)
+            return false;
+        
+        this.save();
+        return true;
     }
 
     @Override
@@ -60,5 +70,13 @@ public class CsvUserDao implements UserDao {
         }
         
         return null;
+    }
+    
+    private void save() throws Exception {
+        try (FileWriter writer = new FileWriter(new File(this.filePath))) {
+            for (User u : this.users) {
+                writer.write(u.getUUID() + ";" + u.getUsername() + ";" + u.getColor().toString() + "\n");
+            }
+        }
     }
 }

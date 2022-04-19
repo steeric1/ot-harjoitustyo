@@ -2,6 +2,7 @@ package snake.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.scene.paint.Color;
 import snake.dao.UserDao;
 
 public class SnakeService {
@@ -13,9 +14,12 @@ public class SnakeService {
         this.userDao = dao;
     }
 
-    public UserCreationResult createUser(String username) {
-        User user = new User(username);
-        UserCreationResult isValid = this.validateUser(user);
+    public UserOperationResult createUser(String username) {
+        return this.createUser(new User(username));
+    }
+    
+    public UserOperationResult createUser(User user) {
+        UserOperationResult isValid = this.validateUser(user);
         if (isValid != null) {
             return isValid;
         }
@@ -23,10 +27,40 @@ public class SnakeService {
         try {
             userDao.add(user);
         } catch (Exception e) { // This branch should ideally never execute.
-            return UserCreationResult.INTERNAL_ERROR;
+            return UserOperationResult.INTERNAL_ERROR;
         }
 
-        return UserCreationResult.SUCCESS;
+        return UserOperationResult.SUCCESS;
+    }
+    
+    public UserOperationResult renameUser(String username, String newUsername) {
+        User user = this.userDao.getByName(username);
+        if (user == null) {
+            return UserOperationResult.USER_NOT_FOUND;
+        }
+            
+        try {
+            userDao.remove(user);
+        } catch (Exception e) {
+            return UserOperationResult.INTERNAL_ERROR;
+        }
+        
+        return this.createUser(new User(user.getUUID(), newUsername, user.getColor()));
+    }
+    
+    public UserOperationResult setUserColor(String username, Color color) {
+        User user = this.userDao.getByName(username);
+        if (user == null) {
+            return UserOperationResult.USER_NOT_FOUND;
+        }
+        
+        try {
+            userDao.remove(user);
+        } catch (Exception e) {
+            return UserOperationResult.INTERNAL_ERROR;
+        }
+        
+        return this.createUser(new User(user.getUUID(), user.getUsername(), color));
     }
     
     public boolean login(String username) {
@@ -36,7 +70,7 @@ public class SnakeService {
             return false;
         }
         
-        System.out.println("Logged in as: " + username);
+        System.out.println("Logged in as: " + username + " (" + u.getUUID() + ")");
         this.loggedInUser = u;
         return true;
     }
@@ -45,20 +79,29 @@ public class SnakeService {
         return this.loggedInUser;
     }
     
+    public boolean logoff() {
+        if (this.loggedInUser != null) {
+            this.loggedInUser = null;
+            return true;
+        }
+        
+        return false;
+    }
+    
     public List<String> getAllUsernames() {
         return this.userDao.getAll().stream()
                 .map(u -> u.getUsername())
                 .collect(Collectors.toList());
     }
 
-    private UserCreationResult validateUser(User user) {
+    private UserOperationResult validateUser(User user) {
         if (user.getUsername().length() < 2) {
-            return UserCreationResult.NAME_TOO_SHORT;
+            return UserOperationResult.NAME_TOO_SHORT;
         } else if (userDao.getAll().stream()
                 .filter(u -> u.getUsername().equals(user.getUsername()))
                 .findAny()
                 .isPresent()) {
-            return UserCreationResult.NAME_TAKEN;
+            return UserOperationResult.NAME_TAKEN;
         }
 
         // Return null if the user is valid. This means that at this point

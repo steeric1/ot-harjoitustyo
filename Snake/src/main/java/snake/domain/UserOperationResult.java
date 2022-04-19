@@ -1,6 +1,6 @@
 package snake.domain;
 
-public enum UserCreationResult {
+public enum UserOperationResult {
     SUCCESS,
     NAME_TOO_SHORT {
         @Override
@@ -12,6 +12,12 @@ public enum UserCreationResult {
         @Override
         public String toString() {
             return "This name is taken!";
+        }
+    },
+    USER_NOT_FOUND {
+        @Override
+        public String toString() {
+            return "Cannot find user!";
         }
     },
     INTERNAL_ERROR {

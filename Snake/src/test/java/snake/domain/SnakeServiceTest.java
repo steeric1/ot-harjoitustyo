@@ -21,25 +21,25 @@ public class SnakeServiceTest {
     
     @Test
     public void canCreateSingleUser() {
-        assertEquals(UserCreationResult.SUCCESS, service.createUser("test"));
+        assertEquals(UserOperationResult.SUCCESS, service.createUser("test"));
         assertEquals(1, this.userDao.getAll().size());
     }
     
     @Test
     public void cannotCreateUserWithTooShortName() {
-        assertEquals(UserCreationResult.NAME_TOO_SHORT, service.createUser("t"));
+        assertEquals(UserOperationResult.NAME_TOO_SHORT, service.createUser("t"));
     }
     
     @Test
     public void cannotCreateUserWithSameNameTwice() {
         service.createUser("test");
         
-        assertEquals(UserCreationResult.NAME_TAKEN, service.createUser("test"));
+        assertEquals(UserOperationResult.NAME_TAKEN, service.createUser("test"));
     }
     
     @Test
     public void userCreationReturnsInternalErrorUponException() {
-        assertEquals(UserCreationResult.INTERNAL_ERROR, service.createUser("error"));
+        assertEquals(UserOperationResult.INTERNAL_ERROR, service.createUser("error"));
     }
     
     @Test
