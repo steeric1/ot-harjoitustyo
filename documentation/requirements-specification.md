@@ -19,16 +19,16 @@ There will be five views in the application, each of which have their own functi
 
 * After having logged in, the user is presented with this view
 * The user can:
-    * Open profile settings (opening the profile view)
+    * Open profile settings (opening the profile view) - Completed
     * See high scores (opening the high score view)
     * Start a new game (opening the game view)
-    * Log off (opening the login view)
+    * Log off (opening the login view) - Completed
 * Additionally, the user's personal high score is shown in this view
 
-### Profile view
+### Profile view - Completed
 
-* The user can edit their nickname
-* The user can set the color of their snake
+* The user can edit their nickname - Completed
+* The user can set the color of their snake - Completed
 
 ### High Score View
 
