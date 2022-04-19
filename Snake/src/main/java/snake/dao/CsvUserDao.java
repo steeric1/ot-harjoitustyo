@@ -49,8 +49,9 @@ public class CsvUserDao implements UserDao {
     @Override
     public boolean remove(User user) throws Exception {
         boolean contained = this.users.remove(user);
-        if (!contained)
+        if (!contained) {
             return false;
+        }
         
         this.save();
         return true;

@@ -36,8 +36,9 @@ public class User {
     
     @Override
     public boolean equals(Object other) {
-        if (other.getClass() != this.getClass() || other == null)
+        if (other.getClass() != this.getClass()) {
             return false;
+        }
         
         User otherUser = (User) other;
         return this.uuid.equals(otherUser.uuid);

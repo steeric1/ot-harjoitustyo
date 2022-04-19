@@ -8,4 +8,6 @@
     <suppress files="snake.ui.LoginView.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="snake.ui.SnakeUi.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="snake.ui.View.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="snake.ui.ProfileView.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="snake.ui.MenuView.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>
