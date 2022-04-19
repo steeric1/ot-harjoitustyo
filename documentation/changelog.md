@@ -33,3 +33,16 @@
   * CsvUserDao:
     * after adding a user, it appears on the list of all users returned by the class
     * after adding a user, it can be found by name
+
+### Week 5
+* The menu view is largely finished, some buttons still unfunctional
+* Created the profile view
+* Added the logic for renaming users and setting user colors
+  * Added unique identifiers (UUIDs) for users, this makes it possible to refer to the same user even with a changed name (file format: uuid;name;color)
+* New classes:
+  * ProfileView - extends View, creates the profile view
+  * UserOperationResult - renamed from UserCreationResult
+* New tests:
+  * SnakeService
+    * can rename a user
+    * can set a user's color
