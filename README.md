@@ -9,6 +9,10 @@
 [Muutosloki](documentation/changelog.md)  
 [Arkkitehtuurikuvaus](documentation/architecture.md)
 
+## Releaset
+
+[Viikko 5](https://github.com/steeric1/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Komentorivitoiminnot
 
 ### Testaus
