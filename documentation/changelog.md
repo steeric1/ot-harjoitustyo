@@ -46,3 +46,22 @@
   * SnakeService
     * can rename a user
     * can set a user's color
+
+### Week 6
+* The menu view is finished (apart from the *Start a new game* button, since the game view has not been created yet)
+* Created the high score view
+* Added logic for registering scores and managing score data persistently
+* New classes:
+  * ScoreDao - an interface that describes an object that handles a score data source
+  * CsvScoreDao - an implementation of ScoreDao, manages its data in a CSV file
+  * Score - describes a score, consists of a value and a user's UUID
+  * HiScoreView - extends View, creates the high score view
+* New tests:
+  * CsvScoreDao
+    * after adding a score, it appears on the list
+    * after adding a score, it can be found by the user that set the score
+    * scores are returned in descending order
+  * SnakeService
+    * an updated list of a user's score can be retrieved
+    * an udpated list of all scores can be retrieved
+    * N top scores can be found
