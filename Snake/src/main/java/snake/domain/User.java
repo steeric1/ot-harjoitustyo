@@ -18,7 +18,7 @@ public class User {
         this(UUID.randomUUID(), name, Color.GREEN);
     }
     
-    public UUID getUUID() {
+    public UUID getId() {
         return this.uuid;
     }
     

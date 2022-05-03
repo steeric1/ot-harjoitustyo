@@ -17,7 +17,7 @@ public class CsvUserDao implements UserDao {
     private String filePath;
 
     public CsvUserDao(String path) {
-        this.users = new ArrayList<User>();
+        this.users = new ArrayList<>();
         this.filePath = path;
         
         try {
@@ -76,7 +76,7 @@ public class CsvUserDao implements UserDao {
     private void save() throws Exception {
         try (FileWriter writer = new FileWriter(new File(this.filePath))) {
             for (User u : this.users) {
-                writer.write(u.getUUID() + ";" + u.getUsername() + ";" + u.getColor().toString() + "\n");
+                writer.write(u.getId() + ";" + u.getUsername() + ";" + u.getColor().toString() + "\n");
             }
         }
     }

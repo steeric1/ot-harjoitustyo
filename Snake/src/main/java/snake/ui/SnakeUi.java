@@ -2,6 +2,7 @@ package snake.ui;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import snake.dao.CsvScoreDao;
 import snake.dao.CsvUserDao;
 import snake.domain.SnakeService;
 
@@ -16,6 +17,7 @@ public class SnakeUi extends Application {
     private View login;
     private View menu;
     private View profile;
+    private View hiScore;
     
     @Override
     public void init() {
@@ -30,15 +32,19 @@ public class SnakeUi extends Application {
                 case PROFILE:
                     this.setActiveView(this.profile);
                     break;
+                case HI_SCORE:
+                    this.setActiveView(this.hiScore);
+                    break;
                 default:
                     break; // TODO: add rest
             }
         };
         
-        this.service = new SnakeService(new CsvUserDao("users.csv"));
+        this.service = new SnakeService(new CsvUserDao("users.csv"), new CsvScoreDao("scores.csv"));
         this.login = new LoginView(this.service, changer);
         this.menu = new MenuView(this.service, changer);
         this.profile = new ProfileView(this.service, changer);
+        this.hiScore = new HiScoreView(this.service, changer);
     }
     
     @Override

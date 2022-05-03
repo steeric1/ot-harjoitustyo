@@ -9,20 +9,20 @@ public class FakeUserDao implements UserDao {
     private List<User> users;
     
     public FakeUserDao() {
-        this.users = new ArrayList<User>();
+        this.users = new ArrayList<>();
     }
     
     @Override
     public void add(User user) throws Exception {
         if (user.getUsername().equals("error"))
             throw new IllegalArgumentException();
-        
-        users.add(user);
+
+        this.users.add(user);
     }
 
     @Override
     public List<User> getAll() {
-        return users;
+        return this.users;
     }    
 
     @Override

@@ -1,5 +1,7 @@
 package snake.ui;
 
+import java.util.List;
+import java.util.Random;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,7 +23,10 @@ public class MenuView extends View {
         Label hello = new Label("Hello, " + super.service.getLoggedInUser().getUsername() + "!");
         hello.setFont(new Font(20));
         
-        Label hiScore = new Label("Personal high score: TODO");
+        List<Integer> userScores = super.service.getUserScores(super.service.getLoggedInUser().getUsername());
+        String hiScoreText = userScores.isEmpty() ? "(no high score)" : Integer.toString(userScores.get(0));
+        
+        Label hiScore = new Label("Personal high score: " + hiScoreText);
         hiScore.setFont(new Font(16));
         
         Button openProfile = new Button("Open profile settings");
@@ -31,12 +36,11 @@ public class MenuView extends View {
         
         Button viewHiScores = new Button("View high scores");
         viewHiScores.setOnAction(event -> {
-            
+            super.viewChanger.change(ViewType.HI_SCORE);
         });
         
         Button startGame = new Button("Start a new game");
         startGame.setOnAction(event -> {
-            
         });
         
         Button logoff = new Button("Log off");

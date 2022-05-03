@@ -1,6 +1,8 @@
 package snake.domain;
 
+import java.util.List;
 import javafx.scene.paint.Color;
+import javafx.util.Pair;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,11 +15,13 @@ public class SnakeServiceTest {
     
     SnakeService service;
     FakeUserDao userDao;
+    FakeScoreDao scoreDao;
     
     @Before
     public void setUp() {
         this.userDao = new FakeUserDao();
-        this.service = new SnakeService(this.userDao);
+        this.scoreDao = new FakeScoreDao();
+        this.service = new SnakeService(this.userDao, this.scoreDao);
     }
     
     @Test
@@ -74,5 +78,33 @@ public class SnakeServiceTest {
         
         assertEquals(Color.RED, service.getLoggedInUser().getColor());
     }
+    
+    @Test
+    public void canFindUpdatedUserScores() {
+        service.createUser("test");
+        service.addScore("test", 0);
+        
+        assertEquals(1, service.getUserScores("test").size());
+    }
 
+    @Test
+    public void canFindUdpatedAllScores() {
+        service.createUser("test1");
+        service.createUser("test2");
+        service.addScore("test1", 1);
+        service.addScore("test2", 2);
+        
+        assertEquals(2, service.getAllScores().size());
+    }
+    
+    @Test
+    public void canFindNTopScores() {
+        service.createUser("test1");
+        service.createUser("test2");
+        service.addScore("test1", 1);
+        service.addScore("test1", 2);
+        service.addScore("test2", 3);
+        
+        assertEquals(2, service.getTopScores(2).size());
+    }
 }

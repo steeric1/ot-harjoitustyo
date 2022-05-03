@@ -1,17 +1,23 @@
 package snake.domain;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.stream.Collectors;
 import javafx.scene.paint.Color;
+import javafx.util.Pair;
+import snake.dao.ScoreDao;
 import snake.dao.UserDao;
 
 public class SnakeService {
 
     private UserDao userDao;
+    private ScoreDao scoreDao;
     private User loggedInUser;
     
-    public SnakeService(UserDao dao) {
-        this.userDao = dao;
+    public SnakeService(UserDao userDao, ScoreDao scoreDao) {
+        this.userDao = userDao;
+        this.scoreDao = scoreDao;
     }
 
     public UserOperationResult createUser(String username) {
@@ -45,7 +51,7 @@ public class SnakeService {
             return UserOperationResult.INTERNAL_ERROR;
         }
         
-        return this.createUser(new User(user.getUUID(), newUsername, user.getColor()));
+        return this.createUser(new User(user.getId(), newUsername, user.getColor()));
     }
     
     public UserOperationResult setUserColor(String username, Color color) {
@@ -60,7 +66,7 @@ public class SnakeService {
             return UserOperationResult.INTERNAL_ERROR;
         }
         
-        return this.createUser(new User(user.getUUID(), user.getUsername(), color));
+        return this.createUser(new User(user.getId(), user.getUsername(), color));
     }
     
     public boolean login(String username) {
@@ -70,7 +76,7 @@ public class SnakeService {
             return false;
         }
         
-        System.out.println("Logged in as: " + username + " (" + u.getUUID() + ")");
+        System.out.println("Logged in as: " + username + " (" + u.getId() + ")");
         this.loggedInUser = u;
         return true;
     }
@@ -93,6 +99,43 @@ public class SnakeService {
                 .map(u -> u.getUsername())
                 .collect(Collectors.toList());
     }
+    
+    public List<Integer> getUserScores(String username) {
+        return this.scoreDao.getUserScores(this.userDao.getByName(username));
+    }
+    
+    public List<Pair<User, Integer>> getTopScores(int n) {
+        List<Score> scores = this.scoreDao.getAll();
+        List<User> users = this.userDao.getAll();
+        List<Pair<User, Integer>> result = new ArrayList<>();
+        
+        int i = 0;
+        ListIterator<Score> it = scores.listIterator();
+        while (it.hasNext() && i++ < n) {
+            Score next = it.next();
+            User user = users.stream()
+                    .filter(u -> u.getId().equals(next.getOwnerId()))
+                    .findAny()
+                    .orElse(null);
+            
+            result.add(new Pair<>(user, next.getValue()));
+        }
+        
+        return result;
+    }
+    
+    public List<Score> getAllScores() {
+        return this.scoreDao.getAll();
+    }
+    
+    public boolean addScore(String username, int value) {
+        try {
+            this.scoreDao.add(new Score(value, this.userDao.getByName(username).getId()));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     private UserOperationResult validateUser(User user) {
         if (user.getUsername().length() < 2) {
@@ -111,7 +154,6 @@ public class SnakeService {
         // whether the user creation is going to be successful.
         return null;
     }
-
 }
 
 
