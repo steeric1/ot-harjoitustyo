@@ -11,6 +11,9 @@ import java.util.UUID;
 import javafx.scene.paint.Color;
 import snake.domain.User;
 
+/**
+ * A user data access object that reads the users from a CSV file.
+ */
 public class CsvUserDao implements UserDao {
 
     private List<User> users;
@@ -38,6 +41,12 @@ public class CsvUserDao implements UserDao {
         }
     }
 
+    /**
+     * Add a user.
+     * 
+     * @param user The user to be added.
+     * @throws Exception
+     */
     @Override
     public void add(User user) throws Exception {
         users.add(user);
@@ -46,6 +55,14 @@ public class CsvUserDao implements UserDao {
         this.save();
     }
     
+    /**
+     * Remove a user.
+     * 
+     * @param user The user to be removed.
+     * @return <code>true</code> if the user was found and removed successfully, <code>false</code>
+     * otherwise.
+     * @throws Exception
+     */
     @Override
     public boolean remove(User user) throws Exception {
         boolean contained = this.users.remove(user);
@@ -62,6 +79,12 @@ public class CsvUserDao implements UserDao {
         return users;
     }
     
+    /**
+     * Get a user by name.
+     * 
+     * @param username The name of the user.
+     * @return A user object, if found, <code>null</code> otherwise.
+     */
     @Override
     public User getByName(String username) {
         for (User u : this.users) {

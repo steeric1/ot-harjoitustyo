@@ -13,6 +13,9 @@ import java.util.stream.Collectors;
 import snake.domain.Score;
 import snake.domain.User;
 
+/**
+ * A score data access object that reads the scores from a CSV file.
+ */
 public class CsvScoreDao implements ScoreDao {
     private LinkedList<Score> scores; // Always sorted in descending order.
     private String filePath;
@@ -38,6 +41,12 @@ public class CsvScoreDao implements ScoreDao {
         }
     }
 
+    /**
+     * Add a score.
+     * 
+     * @param score The score to be added.
+     * @throws Exception
+     */
     @Override
     public void add(Score score) throws Exception {
         if (this.scores.isEmpty() || score.getValue() < this.scores.getLast().getValue()) {
@@ -57,11 +66,18 @@ public class CsvScoreDao implements ScoreDao {
         this.save();
     }
 
+    /**
+     * @return A list of all the scores, in descending order.
+     */
     @Override
     public List<Score> getAll() {
         return this.scores;
     }
 
+    /**
+     * @param user The user whose scores are to be returned.
+     * @return A list of the user's scores, in descending order.
+     */
     @Override
     public List<Integer> getUserScores(User user) {
         return this.scores.stream()

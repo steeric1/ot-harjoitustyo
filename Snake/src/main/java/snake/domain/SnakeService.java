@@ -9,6 +9,10 @@ import javafx.util.Pair;
 import snake.dao.ScoreDao;
 import snake.dao.UserDao;
 
+/**
+ * This class is responsible for the main application logic. It handles actions
+ * such as user creation, user information retrieval, adding new scores.
+ */
 public class SnakeService {
 
     private UserDao userDao;
@@ -20,10 +24,23 @@ public class SnakeService {
         this.scoreDao = scoreDao;
     }
 
+    /**
+     * Create a new user with a username.
+     * 
+     * @param username The username for the new user.
+     * @return An object that contains the outcome of the operation.
+     */
     public UserOperationResult createUser(String username) {
         return this.createUser(new User(username));
     }
     
+    /**
+     * Create a new user with a `User` object. This object will then be registered
+     * and serialised on the disk.
+     * 
+     * @param user The user to be registered and serialised.
+     * @return An object that contains the outcome of the operation.
+     */
     public UserOperationResult createUser(User user) {
         UserOperationResult isValid = this.validateUser(user);
         if (isValid != null) {
@@ -39,6 +56,14 @@ public class SnakeService {
         return UserOperationResult.SUCCESS;
     }
     
+    /**
+     * Rename a user.
+     * 
+     * @param username The old username.
+     * @param newUsername The new username.
+     * 
+     * @return An object that contains the outcome of the operation.
+     */
     public UserOperationResult renameUser(String username, String newUsername) {
         User user = this.userDao.getByName(username);
         if (user == null) {
@@ -54,6 +79,14 @@ public class SnakeService {
         return this.createUser(new User(user.getId(), newUsername, user.getColor()));
     }
     
+    /**
+     * Set a user's snake colour.
+     * 
+     * @param username The name of the user.
+     * @param color The new colour.
+     * 
+     * @return An object that contains the outcome of the operation.
+     */
     public UserOperationResult setUserColor(String username, Color color) {
         User user = this.userDao.getByName(username);
         if (user == null) {
@@ -69,6 +102,13 @@ public class SnakeService {
         return this.createUser(new User(user.getId(), user.getUsername(), color));
     }
     
+    /**
+     * Log in a user.
+     * 
+     * @param username The name of the user to log in.
+     * @return <code>true</code>, if the user was found and logged in successfully,
+     * <code>false</code> otherwise.
+     */
     public boolean login(String username) {
         User u = this.userDao.getByName(username);
         if (u == null) {
@@ -85,6 +125,11 @@ public class SnakeService {
         return this.loggedInUser;
     }
     
+    /**
+     * Log off from the currently logged in user.
+     * 
+     * @return <code>true</code> if a user was logged in, <code>false</code> otherwise.
+     */
     public boolean logoff() {
         if (this.loggedInUser != null) {
             this.loggedInUser = null;
@@ -94,16 +139,28 @@ public class SnakeService {
         return false;
     }
     
+    /**
+     * @return A list of all the registered users' names.
+     */
     public List<String> getAllUsernames() {
         return this.userDao.getAll().stream()
                 .map(u -> u.getUsername())
                 .collect(Collectors.toList());
     }
     
+    /**
+     * @param username The name of the user whose scores are to be retrieved.
+     * @return A list of the user's scores.
+     */
     public List<Integer> getUserScores(String username) {
         return this.scoreDao.getUserScores(this.userDao.getByName(username));
     }
     
+    /**
+     * @param n The number of top scores to be retrieved.
+     * @return A list of pairs with each pair representing a score: the key
+     * is the user who owns the score, and the value is the score.
+     */
     public List<Pair<User, Integer>> getTopScores(int n) {
         List<Score> scores = this.scoreDao.getAll();
         List<User> users = this.userDao.getAll();
@@ -124,10 +181,20 @@ public class SnakeService {
         return result;
     }
     
+    /**
+     * @return All scores.
+     */
     public List<Score> getAllScores() {
         return this.scoreDao.getAll();
     }
     
+    /**
+     * Add a score.
+     * 
+     * @param username The name of the owner of the score.
+     * @param value The score.
+     * @return <code>true</code> if the score was added successfully, <code>false</code> otherwise.
+     */
     public boolean addScore(String username, int value) {
         try {
             this.scoreDao.add(new Score(value, this.userDao.getByName(username).getId()));

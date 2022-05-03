@@ -2,6 +2,9 @@ package snake.domain;
 
 import java.util.UUID;
 
+/**
+ * A score that consists of a value and the owner's ID.
+ */
 public class Score {
     private int value;
     private UUID ownerId;
