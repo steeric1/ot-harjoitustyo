@@ -37,8 +37,16 @@ Komento luo hakemistoon `Snake/target` jar-binäärin `Snake-1.0-SNAPSHOT.jar`
 
 ### Checkstyle
 
-Tiedostoon [checkstyle.xml](Snake/checkstyle.xml) määritellyt koodin laadun testit suoritetaan komennolla
+Tiedostoon [checkstyle.xml](Snake/checkstyle.xml) määritellyt koodin laadun testit suoritetaan ajamalla hakemistossa `Snake` komento
 ```
 mvn jxr:jxr checkstyle:checkstyle
 ```
 Jos koodin laadusta löytyy virheitä, ne voi lukea avaamalla selaimella tiedoston `Snake/target/site/checkstyle.html`
+
+### JavaDocs
+
+Projektin JavaDocs-sivun voi generoida sijaintiin `Snake/target/site/apidocs` ajamalla hakemistossa `Snake` komento
+```
+mvn javadoc:javadoc
+```
+Dokumentaation saa auki avaamalla em. kansiosta sivun `index.html`
