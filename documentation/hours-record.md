@@ -7,5 +7,6 @@
 | 11.4. | 1        | set up Checkstyle |
 | 12.4. | 3        | planned the architecture, wrote the application further |
 | 19.4. | 2.75     | wrote MenuView, ProfileView |
+| 3.5.  | 4        | added score management, created HiScoreView, added JavaDocs, wrote the architecture description and the manual | 
 
-Total hours: 10.67
+Total hours: 14.67
