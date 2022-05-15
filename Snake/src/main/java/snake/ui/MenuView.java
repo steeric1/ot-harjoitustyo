@@ -41,6 +41,7 @@ public class MenuView extends View {
         
         Button startGame = new Button("Start a new game");
         startGame.setOnAction(event -> {
+            super.viewChanger.change(ViewType.GAME);
         });
         
         Button logoff = new Button("Log off");

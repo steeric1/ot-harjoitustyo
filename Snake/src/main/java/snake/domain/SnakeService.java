@@ -211,6 +211,7 @@ public class SnakeService {
                 .filter(u -> u.getUsername().equals(user.getUsername()))
                 .findAny()
                 .isPresent()) {
+            System.out.println("here");
             return UserOperationResult.NAME_TAKEN;
         }
 

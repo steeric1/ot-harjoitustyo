@@ -52,14 +52,20 @@ public class CsvScoreDao implements ScoreDao {
         if (this.scores.isEmpty() || score.getValue() < this.scores.getLast().getValue()) {
             this.scores.addLast(score);
         } else {
+            boolean added = false;
             ListIterator<Score> it = this.scores.listIterator();
             while (it.hasNext()) {
                 Score s = it.next();
                 if (s.getValue() < score.getValue()) {
                     it.previous();
                     it.add(score);
+                    added = true;
                     break;
                 }
+            }
+            
+            if (!added) {
+                this.scores.addLast(score);
             }
         }
         

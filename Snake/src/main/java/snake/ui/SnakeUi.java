@@ -8,7 +8,7 @@ import snake.domain.SnakeService;
 
 public class SnakeUi extends Application {
     
-    static final int DIMENSION = 500;
+    static final int DIMENSION = 700;
     
     private SnakeService service;
     private Stage stage;
@@ -18,6 +18,7 @@ public class SnakeUi extends Application {
     private View menu;
     private View profile;
     private View hiScore;
+    private View game;
     
     @Override
     public void init() {
@@ -35,8 +36,11 @@ public class SnakeUi extends Application {
                 case HI_SCORE:
                     this.setActiveView(this.hiScore);
                     break;
+                case GAME:
+                    this.setActiveView(this.game);
+                    break;
                 default:
-                    break; // TODO: add rest
+                    break;
             }
         };
         
@@ -45,11 +49,13 @@ public class SnakeUi extends Application {
         this.menu = new MenuView(this.service, changer);
         this.profile = new ProfileView(this.service, changer);
         this.hiScore = new HiScoreView(this.service, changer);
+        this.game = new GameView(this.service, changer);
     }
     
     @Override
     public void start(Stage stage) {
         this.stage = stage;
+        this.stage.setResizable(false);
         
         this.stage.setScene(login.getScene());
         this.stage.show();

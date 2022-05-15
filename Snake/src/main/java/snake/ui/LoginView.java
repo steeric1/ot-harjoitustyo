@@ -70,6 +70,7 @@ public class LoginView extends View {
                 if (result != UserOperationResult.SUCCESS) {
                     userCreationError.setText(result.toString());
                     userCreationError.setVisible(true);
+                    return;
                 } else {
                     userCreationError.setText("");
                     userCreationError.setVisible(false);
