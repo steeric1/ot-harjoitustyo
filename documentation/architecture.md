@@ -1,17 +1,23 @@
 # Diagrams
 
-![diagram](https://user-images.githubusercontent.com/68298079/162976236-cae99ad4-b253-45cb-8883-a23f6433fbda.png)
+![diagram](https://user-images.githubusercontent.com/68298079/168492390-caa702d6-a5bc-401c-98a3-9b6d3117be03.png)
 ![image](https://user-images.githubusercontent.com/68298079/164043158-4e73ef30-fced-42b7-913b-8f72dc7657f5.png)
 
 # Application Logic and Structure
 
-The most important class of the application is `SnakeService`. It's essentially responsible for all of the application logic and functionality. It also forms a layer between the classes that build the UI and the classes that manage the data of the application.
+The two most important classes of the application are `SnakeService` and `Game`. `SnakeService` is essentially responsible for all of the application logic and functionality. It also forms a layer between the classes that build the UI and the classes that manage the data of the application. `Game` forms the basis for the game logic and manages data related to the game, making the game easy to render.
 
 `SnakeService` is responsible for e.g.:
 * creation of new users
 * retrieving information about the users (such as their scores, their snake color)
 * modifying the users (renaming, changing the color)
 * logging users in and off
+
+`Game` is responsible for e.g.:
+* tracking the snake's location
+* managing the snake's direction of movement
+* tracking the score
+* detecting bumps
 
 The main data classes of the application are `User` and `Score`. A user consists of an ID (Java's UUID), a name and a snake color. A score contains the associated user's ID and the score value. The `SnakeService` class uses these classes to communicate with the classes that manage the application's persistent data, namely implementations of the interfaces `UserDao` and `ScoreDao`.
 
