@@ -2,7 +2,7 @@
 
 ## The Purpose of the Application
 
-The application will implement a simple 2-dimensional game known as 'Snake', where the user has the objective to control a snake and direct it to eat food, thereby growing the snake. The goal is to grow the snake as large as possible without letting the snake bump its head to its body. The application will make it possible to create multiple users, each having their own high score. The users can also see other users' high scores. Additionally, the users can choose their own snake color.
+The application will implement a simple 2-dimensional game known as 'Snake', where the user has the objective to control a snake and direct it to eat food, thereby growing the snake. The goal is to grow the snake as large as possible without letting the snake bump its head to its body. The application will make it possible to create multiple users, each having their own high score. The users can also see the top-10 scores achieved locally. Additionally, the users can choose their own snake color and rename their users.
 
 ## Functionality
 
@@ -21,7 +21,7 @@ There will be five views in the application, each of which have their own functi
 * The user can:
     * Open profile settings (opening the profile view) - Completed
     * See high scores (opening the high score view) - Completed
-    * Start a new game (opening the game view)
+    * Start a new game (opening the game view) - Completed
     * Log off (opening the login view) - Completed
 * Additionally, the user's personal high score is shown in this view - Completed
 
@@ -36,15 +36,15 @@ There will be five views in the application, each of which have their own functi
     * If fewer than 10 scores are found, then those are shown - Completed
 * The number of listed high scores per user is not limited - Completed
 
-### Game View
+### Game View - Completed
 
 * This is the view that the user will spend most of their time in
-* The user can see the snake inside a bordered square and move it left, right, up and down using the arrow keys
-* The user can see their current score and their current best score
-* When the user loses, a game over view is shown
+* The user can see the snake inside a bordered square and move it left, right, up and down using the arrow keys - Completed
+* The user can see their current score and their current best score - Completed
+* When the user loses, a game over view is shown - Completed
     * The user can see
-        * the score they achieved,
-        * whether they made it on the top-10 list
-        * whether they set a personal best
-        * their (previous) high score
-        * a prompt to start a new game or to quit to menu screen
+        * the score they achieved, - Completed
+        * whether they made it on the top-10 list - Completed
+        * whether they set a personal best - Completed
+        * their (previous) high score - Completed
+        * a prompt to start a new game or to quit to menu screen - Completed
