@@ -65,3 +65,20 @@
     * an updated list of a user's score can be retrieved
     * an udpated list of all scores can be retrieved
     * N top scores can be found
+
+### Week 7
+* The game view is finished. Game loop and logic implemented.
+  * The snake can be controlled using the arrow keys.
+  * The snake grows by eating food.
+  * The game is over if the snake hits its body with its head.
+* New classes:
+  * GameView - extends View, creates the game view (renders the game)
+  * Game - responsible for the game logic
+* New tests:
+  * Game
+    * after advancing a step in the game, the head moves to the correct direction
+    * the direction can be changed
+    * the score grows after eating
+    * direction does not change unless the specified direction is valid
+    * cannot turn 180 degrees
+    * game is over if the snake bumps its head to its body
