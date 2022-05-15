@@ -2,7 +2,7 @@
 
 ## Installation
 
-Download the [snake.jar](https://github.com/steeric1/ot-harjoitustyo/releases/download/viikko6/snake.jar) file from the releases.
+Download the [snake.jar](https://github.com/steeric1/ot-harjoitustyo/releases/download/loppupalautus/snake.jar) file from the releases.
 
 **Note:** The program saves its data in two files, `users.csv` and `scores.csv`. The files will be created in the working directory upon runtime.
 
