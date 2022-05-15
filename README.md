@@ -9,6 +9,7 @@
 [Arkkitehtuurikuvaus](documentation/architecture.md)  
 [Käyttöohje](documentation/manual.md)  
 [Testausdokumentti](documentation/testing.md)
+[Muutosloki](documentation/changelog.md)
 
 ## Releaset
 
