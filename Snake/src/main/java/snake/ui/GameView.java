@@ -97,10 +97,10 @@ public class GameView extends View {
         
         t.setText("High score: 000");
         t.setFont(hiScore.getFont());
-        hiScore.setPrefWidth(t.getLayoutBounds().getWidth());
+        hiScore.setPrefWidth(t.getLayoutBounds().getWidth() + 50);
         
         scoreContainer.getChildren().addAll(score, hiScore);
-        
+                
         GameView view = this;
         new AnimationTimer() {
             private long previousStepTime = System.nanoTime();
