@@ -8,7 +8,7 @@
 [Työaikakirjanpito](documentation/hours-record.md)  
 [Arkkitehtuurikuvaus](documentation/architecture.md)  
 [Käyttöohje](documentation/manual.md)  
-[Testausdokumentti](documentation/testing.md)
+[Testausdokumentti](documentation/testing.md)  
 [Muutosloki](documentation/changelog.md)
 
 ## Releaset
