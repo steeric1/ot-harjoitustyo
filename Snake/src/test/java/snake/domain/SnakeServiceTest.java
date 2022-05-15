@@ -1,15 +1,9 @@
 package snake.domain;
 
-import java.util.List;
 import javafx.scene.paint.Color;
-import javafx.util.Pair;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import snake.domain.SnakeService;
 
 public class SnakeServiceTest {
     

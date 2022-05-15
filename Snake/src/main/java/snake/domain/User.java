@@ -42,6 +42,14 @@ public class User {
         return this.snakeColor;
     }
     
+    /**
+     * Test whether this User object equals to another object. It equals to another
+     * object if and only if the other object is an instance of User and the users'
+     * UUIDs are equal.
+     * 
+     * @param other The object to compare to.
+     * @return Whether the objects are equal.
+     */
     @Override
     public boolean equals(Object other) {
         if (other.getClass() != this.getClass()) {

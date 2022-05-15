@@ -112,11 +112,9 @@ public class SnakeService {
     public boolean login(String username) {
         User u = this.userDao.getByName(username);
         if (u == null) {
-            System.out.println("User by name \"" + username + "\" was not found.");
             return false;
         }
         
-        System.out.println("Logged in as: " + username + " (" + u.getId() + ")");
         this.loggedInUser = u;
         return true;
     }
@@ -211,7 +209,6 @@ public class SnakeService {
                 .filter(u -> u.getUsername().equals(user.getUsername()))
                 .findAny()
                 .isPresent()) {
-            System.out.println("here");
             return UserOperationResult.NAME_TAKEN;
         }
 

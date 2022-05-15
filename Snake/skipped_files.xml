@@ -11,4 +11,5 @@
     <suppress files="snake.ui.ProfileView.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="snake.ui.MenuView.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="snake.ui.HiScoreView.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="snake.ui.GameView.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>
